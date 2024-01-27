@@ -1,10 +1,10 @@
-// Task 1: Two sum (Две суммы)
+// Задача 1: Две суммы (Two sum)
 
-// Описание и решение задачи находится [здесь](URL)
+// Описание и решение задачи находится [здесь](https://github.com/slemeshaev/Leetcode/blob/main/1_Two_Sum/1_Two_sum.md)
 
-class Solution {
+class TwoSum {
     // Solution 1: O(N^2)
-    func twoSumBruteForce(nums: [Int], target: Int) -> [Int] {
+    func bruteForce(nums: [Int], target: Int) -> [Int] {
         var resultNums: [Int] = []
         
         for i in 0..<nums.count - 1 {
@@ -20,30 +20,10 @@ class Solution {
         
         return resultNums
     }
-    
-    // Solution 2: O(N)
-    func twoSumImproved(nums: [Int], target: Int) -> [Int] {
-        var dictionary: [Int : Int] = [:]
-        var resultNums: [Int] = []
-        
-        for (i, j) in nums.enumerated() {
-            if let index = dictionary[target - j] {
-                resultNums.append(index)
-                resultNums.append(i)
-                
-                return resultNums
-            }
-            
-            dictionary[j] = i
-        }
-        
-        return resultNums
-    }
 }
 
 let someNums = [4, 6, 8, 3, 5, 24, 3, 12]
 let someTarget = 13
 
-let example = Solution()
-example.twoSumBruteForce(nums: someNums, target: someTarget)
-example.twoSumImproved(nums: someNums, target: someTarget)
+let example = TwoSum()
+example.bruteForce(nums: someNums, target: someTarget)
