@@ -1,53 +1,49 @@
-// Задача 1: Сумма двух (Two sum)
+// Task 1: Two sum (Две суммы)
 
-// Условие: На вход подается массив чисел типа Int и объект типа Int.
-// Верните значение двух чисел из массива, которые в сумме дают значение объекта.
-
-// Решение может быть только одно и элементы в массиве не повторяются,
-// если пара не найдена, то верните пустой массив.
+// Описание и решение задачи находится [здесь](URL)
 
 class Solution {
-    // Решение 1 (Сложность алгоритма: O(N^2))
-    func twoSum(array: [Int], target: Int) -> [Int] {
-        var resultArray: [Int] = []
+    // Solution 1: O(N^2)
+    func twoSumBruteForce(nums: [Int], target: Int) -> [Int] {
+        var resultNums: [Int] = []
         
-        for i in 0 ..< array.count - 1 {
-            for j in i + 1 ..< array.count {
-                if (array[i] + array[j] == target) {
-                    resultArray.append(i)
-                    resultArray.append(j)
+        for i in 0..<nums.count - 1 {
+            for j in i + 1..<nums.count {
+                if (nums[i] + nums[j] == target) {
+                    resultNums.append(i)
+                    resultNums.append(j)
                     
-                    return resultArray
+                    return resultNums
                 }
             }
         }
         
-        return resultArray
+        return resultNums
     }
     
-    // Решение 2 (Сложность алгоритма: O(N))
-    func twoSumImproved(array: [Int], target: Int) -> [Int] {
+    // Solution 2: O(N)
+    func twoSumImproved(nums: [Int], target: Int) -> [Int] {
         var dictionary: [Int : Int] = [:]
-        var resultArray: [Int] = []
+        var resultNums: [Int] = []
         
-        for (i, j) in array.enumerated() {
+        for (i, j) in nums.enumerated() {
             if let index = dictionary[target - j] {
-                resultArray.append(index)
-                resultArray.append(i)
+                resultNums.append(index)
+                resultNums.append(i)
                 
-                return resultArray
+                return resultNums
             }
             
             dictionary[j] = i
         }
         
-        return resultArray
+        return resultNums
     }
 }
 
-let someArray = [4, 6, 8, 3, 5, 24, 3, 12]
+let someNums = [4, 6, 8, 3, 5, 24, 3, 12]
 let someTarget = 13
 
 let example = Solution()
-example.twoSum(array: someArray, target: someTarget)
-example.twoSumImproved(array: someArray, target: someTarget)
+example.twoSumBruteForce(nums: someNums, target: someTarget)
+example.twoSumImproved(nums: someNums, target: someTarget)
