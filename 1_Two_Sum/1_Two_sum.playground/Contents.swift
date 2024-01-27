@@ -1,6 +1,6 @@
 // Задача 1: Две суммы (Two sum)
 
-// Описание и решение задачи находится [здесь](https://github.com/slemeshaev/Leetcode/blob/main/1_Two_Sum/1_Two_sum.md)
+// Описание и решение задачи находятся в файле 1_Two_sum.md
 
 class TwoSum {
     // Solution 1: O(N^2)
