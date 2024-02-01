@@ -47,6 +47,27 @@ class TwoSum {
         
         return resultNums
     }
+    
+    // Solution 3:
+    // Time  complexity: O(n)
+    // Space complexity: O(n)
+    func onePassHashTable(nums: [Int], target: Int) -> [Int] {
+        var dictionary: [Int : Int] = [:]
+        var resultNums: [Int] = []
+        
+        for (index, value) in nums.enumerated() {
+            if let complementIndex = dictionary[target - value] {
+                resultNums.append(complementIndex)
+                resultNums.append(index)
+                
+                return resultNums
+            }
+            
+            dictionary[value] = index
+        }
+        
+        return resultNums
+    }
 }
 
 let someNums = [4, 6, 8, 3, 5, 24, 3, 12]
@@ -55,3 +76,4 @@ let someTarget = 13
 let example = TwoSum()
 example.bruteForce(nums: someNums, target: someTarget)
 example.twoPassHashTable(nums: someNums, target: someTarget)
+example.onePassHashTable(nums: someNums, target: someTarget)
