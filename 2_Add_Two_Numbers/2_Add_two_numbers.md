@@ -10,7 +10,7 @@
 - Выходные параметры: [7, 0, 8]
 - Объяснение: 342 + 465 = 807
 
-![Add two numbers](https://raw.githubusercontent.com/slemeshaev/Leetcode/main/2_Add_Two_Numbers/addtwonumber1.jpg)
+![Add two numbers](https://raw.githubusercontent.com/slemeshaev/Leetcode/main/2_Add_Two_Numbers/images/addtwonumber1.jpg)
 
 #### Пример 2:
 
@@ -36,6 +36,8 @@
 #### Интуиция
 
 Отслеживайте перенос с помощью переменной и имитируйте сумму цифр за цифрами, начиная с заголовка списка, который содержит наименее значимую цифру.
+
+![Рисунок 1](https://raw.githubusercontent.com/slemeshaev/Leetcode/main/2_Add_Two_Numbers/images/Figure1.png)
 
 Рисунок 1. Визуализация сложения двух чисел: 342 + 465 = 807. 
 
