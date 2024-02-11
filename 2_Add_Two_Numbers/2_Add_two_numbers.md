@@ -10,7 +10,7 @@
 - Выходные параметры: [7, 0, 8]
 - Объяснение: 342 + 465 = 807
 
-![Add two numbers](https://raw.githubusercontent.com/slemeshaev/Leetcode/main/2_Add_Two_Numbers/images/addtwonumber1.jpg)
+![Add two numbers](https://raw.githubusercontent.com/slemeshaev/Leetcode/main/2_Add_Two_Numbers/images/Linked-List.png)
 
 #### Пример 2:
 
