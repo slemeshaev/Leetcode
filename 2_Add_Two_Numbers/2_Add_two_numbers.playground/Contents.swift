@@ -1,36 +1,73 @@
 // Задача 2: Сложить два числа (Add Two Numbers)
 
-/* Вам даны два не пустых связанных списка, представляющих два неотрицательных целых числа. Цифры хранятся в обратном порядке, и каждый из их узлов содержит одну цифру. Добавьте два числа и верните сумму в виде связанного списка.
- 
-Вы можете предположить, что два числа не содержат ни одного ведущего нуля, за исключением самого числа 0. */
+// Описание и решение задачи находятся в файле 2_Add_two_numbers.md
 
-// Input: l1 = [2,4,3], l2 = [5,6,4]
-// Output: [7,0,8]
-// Explanation: 342 + 465 = 807.
-
-// Definition for singly-linked list.
+// Определение односвязного списка
 class ListNode {
     var value: Int
     var next: ListNode?
     
     // MARK: - Init
-    init() {
-        self.value = 0;
-        self.next = nil;
-    }
-    
     init(_ value: Int) {
         self.value = value
         self.next = nil
     }
+}
+
+struct LinkedList: CustomStringConvertible {
+    // MARK: - Properties
+    private var head: ListNode?
+    private var tail: ListNode?
     
-    init(_ value: Int, _ next: ListNode?) {
-        self.value = value
-        self.next = next
+    var isEmpty: Bool {
+        return head == nil
+    }
+    
+    var first: ListNode? {
+        return head
+    }
+    
+    var last: ListNode? {
+        return tail
+    }
+    
+    var description: String {
+        var text = "["
+        var node = head
+        
+        while node != nil {
+            if let nodeValue = node?.value {
+                text += "\(nodeValue)"
+            }
+            
+            node = node?.next
+            
+            if node != nil {
+                text += ", "
+            }
+        }
+        
+        return text + "]"
+    }
+    
+    // MARK: - Interface
+    mutating func append(value: Int) {
+        let newNode = ListNode(value)
+        
+        if tail != nil {
+            tail?.next = newNode
+        } else {
+            head = newNode
+        }
+        
+        tail = newNode
     }
 }
 
+
 class Solution {
+    // Time  complexity: O(max⁡(m,n))
+    // Space complexity: O(1)
     func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         let dummyHead = ListNode(0)
         var curr = dummyHead
@@ -51,17 +88,21 @@ class Solution {
     }
 }
 
-let forthNodeOfTheFirstList = ListNode(12, nil)
-let thirdNodeOfTheFirstList = ListNode(9, forthNodeOfTheFirstList)
-let secondNodeOfTheFirstList = ListNode(6, thirdNodeOfTheFirstList)
-let firstNodeOfTheFirstList = ListNode(1, secondNodeOfTheFirstList)
+//- Входные параметры: l1 = [2, 4, 3], l2 = [5, 6, 4]
+//- Выходные параметры: [7, 0, 8]
+//- Объяснение: 342 + 465 = 807
 
-let thirdNodeOfTheSecondList = ListNode(8, nil)
-let secondNodeOfTheSecondList = ListNode(5, thirdNodeOfTheSecondList)
-let firstNodeOfTheSecondList = ListNode(2, secondNodeOfTheSecondList)
+var firstList = LinkedList()
+firstList.append(value: 2)
+firstList.append(value: 4)
+firstList.append(value: 3)
+firstList.description
+
+var secondList = LinkedList()
+secondList.append(value: 5)
+secondList.append(value: 6)
+secondList.append(value: 4)
+secondList.description
 
 let solution = Solution()
-let unionList = solution.addTwoNumbers(firstNodeOfTheFirstList, firstNodeOfTheSecondList)
-
-print(unionList!)
-
+let unionList = solution.addTwoNumbers(firstList.first, secondList.first)
