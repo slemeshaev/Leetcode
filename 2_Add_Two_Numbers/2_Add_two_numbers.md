@@ -10,7 +10,7 @@
 - Выходные параметры: [7, 0, 8]
 - Объяснение: 342 + 465 = 807
 
-![Add two numbers](https://raw.githubusercontent.com/slemeshaev/Leetcode/main/2_Add_Two_Numbers/images/Linked-List.png)
+![Add two numbers](https://raw.githubusercontent.com/slemeshaev/Leetcode/main/2_Add_Two_Numbers/images/linked-list.png)
 
 #### Пример 2:
 
@@ -37,7 +37,7 @@
 
 Отслеживайте перенос с помощью переменной и имитируйте сумму цифр за цифрами, начиная с заголовка списка, который содержит наименее значимую цифру.
 
-![Рисунок 1](https://raw.githubusercontent.com/slemeshaev/Leetcode/main/2_Add_Two_Numbers/images/Figure1.png)
+![Рисунок 1](https://raw.githubusercontent.com/slemeshaev/Leetcode/main/2_Add_Two_Numbers/images/sum-linked-lists)
 
 Рисунок 1. Визуализация сложения двух чисел: 342 + 465 = 807. 
 
@@ -77,18 +77,19 @@
 class Solution {
     func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         let dummyHead = ListNode(0)
-        var curr = dummyHead
-        var carry = 0, l1 = l1, l2 = l2
+        var currentNode = dummyHead
+        var carry = 0, p = l1, q = l2
         
-        while l1 != nil || l2 != nil || carry != 0 {
-            let x = l1?.value ?? 0
-            let y = l2?.value ?? 0
-            let sum = carry + x + y
+        while p != nil || q != nil || carry != 0 {
+            let sum = (p?.value ?? 0) + (q?.value ?? 0) + carry
             carry = sum / 10
-            curr.next = ListNode(sum % 10)
-            curr = curr.next!
-            l1 = l1?.next
-            l2 = l2?.next
+            
+            let newNode = ListNode(sum % 10)
+            currentNode.next = newNode
+            currentNode = newNode
+            
+            p = p?.next
+            q = q?.next
         }
         
         return dummyHead.next
