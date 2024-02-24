@@ -2,18 +2,18 @@
 
 // Описание и решение задачи находятся в файле 2_Add_two_numbers.md
 
-// Определение односвязного списка
+// Определение узла списка
 class ListNode {
     var value: Int
     var next: ListNode?
     
-    // MARK: - Init
     init(_ value: Int) {
         self.value = value
         self.next = nil
     }
 }
 
+// Определение односвязного списка
 struct LinkedList: CustomStringConvertible {
     // MARK: - Properties
     private var head: ListNode?
@@ -54,13 +54,25 @@ struct LinkedList: CustomStringConvertible {
     mutating func append(value: Int) {
         let newNode = ListNode(value)
         
-        if tail != nil {
-            tail?.next = newNode
+        if let tail = tail {
+            tail.next = newNode
         } else {
             head = newNode
         }
         
         tail = newNode
+    }
+    
+    mutating func removeFirst() {
+        head = head?.next
+        if isEmpty {
+            tail = nil
+        }
+    }
+    
+    mutating func removeAll() {
+        head = nil
+        tail = nil
     }
 }
 
@@ -70,21 +82,41 @@ class Solution {
     // Space complexity: O(1)
     func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         let dummyHead = ListNode(0)
-        var curr = dummyHead
-        var carry = 0, l1 = l1, l2 = l2
+        var currentNode = dummyHead
+        var carry = 0, p = l1, q = l2
         
-        while l1 != nil || l2 != nil || carry != 0 {
-            let x = l1?.value ?? 0
-            let y = l2?.value ?? 0
-            let sum = carry + x + y
+        while p != nil || q != nil || carry != 0 {
+            let sum = (p?.value ?? 0) + (q?.value ?? 0) + carry
             carry = sum / 10
-            curr.next = ListNode(sum % 10)
-            curr = curr.next!
-            l1 = l1?.next
-            l2 = l2?.next
+            
+            let newNode = ListNode(sum % 10)
+            currentNode.next = newNode
+            currentNode = newNode
+            
+            p = p?.next
+            q = q?.next
         }
         
         return dummyHead.next
+    }
+    
+    func description(_ result: ListNode?) -> String {
+        var text = "["
+        var node = result
+        
+        while node != nil {
+            if let nodeValue = node?.value {
+                text += "\(nodeValue)"
+            }
+            
+            node = node?.next
+            
+            if node != nil {
+                text += ", "
+            }
+        }
+        
+        return text + "]"
     }
 }
 
@@ -105,4 +137,5 @@ secondList.append(value: 4)
 secondList.description
 
 let solution = Solution()
-let unionList = solution.addTwoNumbers(firstList.first, secondList.first)
+let result = solution.addTwoNumbers(firstList.first, secondList.first)
+solution.description(result)
