@@ -37,7 +37,7 @@
 
 Отслеживайте перенос с помощью переменной и имитируйте сумму цифр за цифрами, начиная с заголовка списка, который содержит наименее значимую цифру.
 
-![Рисунок 1](https://raw.githubusercontent.com/slemeshaev/Leetcode/main/2_Add_Two_Numbers/images/sum-linked-lists)
+![Рисунок 1](https://raw.githubusercontent.com/slemeshaev/Leetcode/main/2_Add_Two_Numbers/images/sum-linked-lists.png)
 
 Рисунок 1. Визуализация сложения двух чисел: 342 + 465 = 807. 
 
