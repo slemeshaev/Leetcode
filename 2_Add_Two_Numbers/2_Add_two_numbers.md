@@ -73,27 +73,26 @@
 | l1 = [9,9] <br> l2 =[1]      | Сумма может иметь дополнительный <br> перенос единицы в конце, что легко забыть.|
 
 #### Реализация на языке Swift
+
 ```
-class Solution {
-    func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
-        let dummyHead = ListNode(0)
-        var currentNode = dummyHead
-        var carry = 0, p = l1, q = l2
+func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+    let dummyHead = ListNode(0)
+    var currentNode = dummyHead
+    var carry = 0, p = l1, q = l2
+    
+    while p != nil || q != nil || carry != 0 {
+        let sum = (p?.value ?? 0) + (q?.value ?? 0) + carry
+        carry = sum / 10
         
-        while p != nil || q != nil || carry != 0 {
-            let sum = (p?.value ?? 0) + (q?.value ?? 0) + carry
-            carry = sum / 10
-            
-            let newNode = ListNode(sum % 10)
-            currentNode.next = newNode
-            currentNode = newNode
-            
-            p = p?.next
-            q = q?.next
-        }
+        let newNode = ListNode(sum % 10)
+        currentNode.next = newNode
+        currentNode = newNode
         
-        return dummyHead.next
+        p = p?.next
+        q = q?.next
     }
+    
+    return dummyHead.next
 }
 ```
 
