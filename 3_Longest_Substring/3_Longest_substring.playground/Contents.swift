@@ -4,16 +4,10 @@
 
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
-        // Длина самой длинной подстроки без повторяющихся символов
         var maxLength = 0
-        
-        // Создаем множество для хранения уникальных символов в текущей подстроке
         var uniqueSymbols = Set<Character>()
-        
-        // Начало и конец строки
         var start = s.startIndex, end = s.startIndex
         
-        // С помощью цикла ищем длину самой длинной подстроки
         while end < s.endIndex {
             if !uniqueSymbols.contains(s[end]) {
                 uniqueSymbols.insert(s[end])
